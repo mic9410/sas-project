@@ -1,8 +1,5 @@
 <template>
-  <div>Warstwa każdej zmiennej (app, act, ags, agr).<br>
-    Dla każdej z grup mamy 5 zmiennych (nazwa, jak bardzo vin zalezy od skategoryzowanej zmiennej (po niej sortujemy, kategoryzacja (czyli podział na te 3 grupy)).<br>
-    Każda z nich będzie podlinkowana do warstwy 3 - warstwy zmiennych. <br>
-    Liczymy wykresy na kategoriach zmiennych. Chodzi o to, że linkujemy dla każdej zmiennej jakiś wykres. </div>
+  <div><h4 class="col-lg-8">{{aggregateLayerText}}</h4></div>
 </template>
 
 <script>
@@ -10,10 +7,19 @@ export default {
   name: 'aggregate-layer',
   data () {
     return {
+      aggregateLayerText: 'Warstwa zbiorcza dotyczy analizy vintage kwotowego i ilościowego dla vin=1, 2 oraz 3, ' +
+        'a także z podziałem na kredyty gotówkowe i ratalne.'
     }
-  }}
+  }
+}
 </script>
 
 <style scoped>
-
+  h4 {
+    display: inline-block;
+    text-align: center;
+    word-wrap: break-word;
+    font-size: larger;
+    margin: 2%;
+  }
 </style>
