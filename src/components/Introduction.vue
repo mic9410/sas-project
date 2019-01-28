@@ -1,22 +1,80 @@
 <template>
-  <div>
-    <div class="item active">
-      <img src="./../../img/dollar.jpg" alt="" width="2000" height="300"/>
-      <!-- Opis slajdu -->
+  <div class="vertical-center">
+    <div class="page-container">
+      <div class="item active">
+        <img src="./../../img/dollar.jpg" alt="" width="2000" height="300"/>
+        <!-- Opis slajdu -->
+      </div>
+      <h1>{{this.header}}</h1>
+      <h2 class="col-lg-8">{{this.msg}}</h2>
+      <div>
+        <button-group class="col-md-8">
+          <button class="btn btn-info btn-lg" v-on:click="visibleContainer = 1">Warstwa Całościowa</button>
+          <button class="btn btn-info btn-lg" v-on:click="visibleContainer = 2">Warstwa Zbiorcza</button>
+          <button class="btn btn-info btn-lg" v-on:click="visibleContainer = 3">Warstwa Zmiennych</button>
+        </button-group>
+      </div>
+      <overall-layer v-if="visibleContainer === 1"></overall-layer>
+      <aggregate-layer v-if="visibleContainer === 2"></aggregate-layer>
+      <variable-layer v-if="visibleContainer === 3"></variable-layer>
+      <br>
     </div>
-
-    <h1>Raport podsumowujący prace<br> nad projektem z przedmiotu SAS.</h1>
-    <h2>W pierwszej części wybieramy interesującego nas klienta<br>oraz parametry raportu.
-      Następnie dajemy enter i generujemy raport.</h2>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'introduction'
+import AggregateLayer from './AggregateLayer'
+import VariableLayer from './VariableLayer'
+import OverallLayer from './OverallLayer'
+import ButtonGroup from 'bootstrap-vue/es/components/button-group/button-group'
+import Button from 'bootstrap-vue/es/components/button/button'
+
+export default {
+  components: {
+    Button,
+    ButtonGroup,
+    AggregateLayer,
+    OverallLayer,
+    VariableLayer
+  },
+
+  name: 'introduction',
+
+  data () {
+    return {
+      visibleContainer: 3,
+      header: 'Raport podsumowujący prace nad projektem z przedmiotu SAS.',
+      msg: 'Dla każdej z warstw otrzymujemy wykresy z informacjami, dotyczącymi analizy vintage kwotowego i ilościowego.'
+    }
   }
+}
 </script>
 
 <style scoped>
+  h1, h2 {
+    font-weight: normal;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+
+  h2 {
+    display: inline-block;
+    text-align: center;
+    word-wrap: break-word;
+  }
+
+  .btn-info {
+    padding: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
 
 </style>

@@ -1,21 +1,15 @@
 <template>
   <div>
     <introduction></introduction><br>
-    <setting-params></setting-params><br>
-    <variable-layer></variable-layer><br>
   </div>
 </template>
 
 <script>
-import VariableLayer from './VariableLayer'
 import Introduction from './Introduction'
-import SettingParams from './SettingParams'
 
 export default {
   components: {
-    Introduction,
-    VariableLayer,
-    SettingParams
+    Introduction
   },
   name: 'Index',
   data () {
