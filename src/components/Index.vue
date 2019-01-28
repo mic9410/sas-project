@@ -9,12 +9,10 @@
 <script>
 import VariableLayer from './VariableLayer'
 import Introduction from './Introduction'
-import CollectiveLayer from './CollectiveLayer'
 import SettingParams from './SettingParams'
 
 export default {
   components: {
-    CollectiveLayer,
     Introduction,
     VariableLayer,
     SettingParams

@@ -1,3 +1,4 @@
+/* eslint-disable vue/require-v-for-key */
 <template>
   <div>Zbiorcza - wykresy które pokazują ogólną sytuację - prosty i asymptotyczny, dziedziną są wszystkie obserwacje.
     <br>
@@ -63,16 +64,19 @@
             </select>
           </div>
         </div>
+        {{this.fileName.toLowerCase()}}
         <div class="form-group row">
           <button v-on:click="displayResults">Pokaż wykres</button>
         </div>
       </form>
+      <div class="form-group row" v-if="allValuesProvided">
+        <img src="D:\Repos\sas-raport\graphs1_all_act_act_age.jpg">
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'setting-params',
   data () {
@@ -111,7 +115,7 @@ export default {
       walletType: '',
       categoryType: '',
       variableName: '',
-      graphPath: ''
+      fileName: ''
     }
   },
   methods: {
@@ -119,8 +123,8 @@ export default {
       // `this` inside methods points to the Vue instance
       // `event` is the native DOM event
       if (event && this.allValuesProvided()) {
-        this.fileName = this.due + '_' + this.walletType + '_' + this.categoryType + '_' + this.variableName + '.jpg'
-      } else {
+        this.fileName = 'D:\\Repos\\sas-raport\\graphs' + this.due + '_' + this.walletType + '_' + this.categoryType + '_' + this.variableName + '.jpg'
+      } else {    
         alert('Nie można wygenerować wykresu.\n' +
             'Upewnij sie, że uzupełniłeś wszystkie pola.')
       }
