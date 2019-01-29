@@ -2,7 +2,15 @@
   <div>
     <div><h4 id="test-anchor" class="col-lg-8">{{overallLayerText}}</h4></div>
     <div>
-      <img v-bind:src="this.getImgUrl(this.host , this.file)" alt="this.text1"/>
+      <form>
+      <select class="form-control col-md-2 btn btn-secondary " id="katalog" v-model="catalog">
+        <option selected>1</option>
+        <option>2</option>
+        <option>3</option>
+      </select>
+        URL2: {{this.getImgUrl(this.host, this.catalog, this.file)}}
+      </form>
+      <img v-bind:src="this.getImgUrl(this.host, this.catalog, this.file)" alt="this.text1"/>
     </div>
   </div>
 </template>
@@ -12,9 +20,10 @@ export default {
   name: 'overall-layer',
   data () {
     return {
-      host: 'https://web.sgh.waw.pl/~gkoloch',
-      file: '/koloch_talk.png',
-      full: this.host + this.file,
+      host: 'https://s3.amazonaws.com/projektsas/produkty_projektu/',
+      file: '/vin1.jpg',
+      catalog: '1',
+      vinNumber: '1',
       overallLayerText: 'W warstwie całościowej przyjrzymy się całościowej analizie vintage, ' +
         'bez podziału na zmienne, grupy, czy też możliwe okresy vin.',
       /* vinIlosciowyPath: '.data/1_all_act_act_age.PNG', */
@@ -26,8 +35,8 @@ export default {
     }
   },
   methods: {
-    getImgUrl (hostVar, fileVar) {
-      return (hostVar + fileVar).toString()
+    getImgUrl (host, catalog, file) {
+      return (host + catalog + file).toString()
     }
   }
 }
