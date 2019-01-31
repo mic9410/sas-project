@@ -45,23 +45,21 @@
             <select class="form-control btn btn-secondary"
                     v-model="variableName"
                     v-if="due === '1' && walletType === 'all' && grupa === 'ACT'">
-              <option selected
-                v-for="variable in ['ACT_CCSS_N_LOAN','ACT_CALL_N_LOAN','ACT3_N_GOOD_DAYS','ACT6_N_GOOD_DAYS', 'ACT9_N_GOOD_DAYS']">
+              <option v-for="variable in ['ACT_CCSS_N_LOAN', 'ACT_CALL_N_LOAN', 'ACT3_N_GOOD_DAYS', 'ACT6_N_GOOD_DAYS', 'ACT9_N_GOOD_DAYS']">
                 {{variable}}
               </option>
             </select>
             <select class="form-control btn btn-secondary"
                     v-model="variableName"
                     v-if="due === '1' && walletType === 'css' && grupa === 'ACT'">
-              <option selected
-                v-for="variable in ['ACT_CCSS_N_STATB', 'ACT_CCSS_MIN_LNINST', 'ACT_CCSS_MIN_PNINST', 'ACT9_N_GOOD_DAYS','ACT12_N_GOOD_DAYS']">
+              <option v-for="variable in ['ACT_CCSS_N_STATB', 'ACT_CCSS_MIN_LNINST', 'ACT_CCSS_MIN_PNINST', 'ACT9_N_GOOD_DAYS','ACT12_N_GOOD_DAYS']">
                 {{variable}}
               </option>
             </select>
             <select class="form-control btn btn-secondary"
                     v-model="variableName"
                     v-if="due === '1' && walletType === 'ins' && grupa === 'ACT'">
-              <option  v-for="variable in ['ACT_CINS_N_STATB','ACT_CALL_ALL','ACT_CINS_ACP','ACT_LOANINC','ACT_CC']">
+              <option v-for="variable in ['ACT_CINS_N_STATB','ACT_CALL_ALL','ACT_CINS_ACP','ACT_LOANINC','ACT_CC']">
                 {{variable}}
               </option>
             </select>
@@ -182,7 +180,7 @@
             <select class="form-control btn btn-secondary"
                     v-model="variableName"
                     v-if="due === '2' && walletType === 'all' && grupa === 'APP'">
-              <option v-for="variable in ['APP_CHAR_BRANCH', 'APP_LOAN_AMOUNT', 'APP_INSTALLMENT', 'APP_N_INSTALLMENTS', 'APP_CHAR_CARS'] ">{{variable}}</option>
+              <option v-for="variable in ['APP_CHAR_BRANCH', 'APP_LOAN_AMOUNT', 'APP_INSTALLMENT', 'APP_N_INSTALLMENTS', 'APP_CHAR_CARS']">{{variable}}</option>
             </select>
             <select class="form-control btn btn-secondary"
                     v-model="variableName"
