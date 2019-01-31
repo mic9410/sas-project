@@ -22,11 +22,11 @@
         </div>
       </form>
       <div class="results" v-if="allValuesProvidedAL">
-        <h4>Vintage ilościowy - wykres asymptotyczny</h4><br>
+        <h4>Vintage / wykres asymptotyczny</h4><br>
         <img v-bind:src="this.getImgUrlForAL(this.hostAL, this.dueAL, 'vin_a' , this.walletTypeAL)" alt=""/>
-        <br><h4>Vintage ilościowy</h4><br>
+        <br><h4>Vintage / wykres ilościowy</h4><br>
         <img v-bind:src="this.getImgUrlForAL(this.hostAL, this.dueAL, 'vin_i' , this.walletTypeAL)" alt=""/>
-        <br><h4>Vintage kwotowy</h4><br>
+        <br><h4>Vintage / wykres kwotowy</h4><br>
         <img v-bind:src="this.getImgUrlForAL(this.hostAL, this.dueAL, 'vin_k' , this.walletTypeAL)" alt=""/>
       </div>
     </div>
@@ -41,7 +41,8 @@ export default {
       hostAL: 'https://s3.amazonaws.com/projektsas/projekt_all/',
       dueAL: '1',
       walletTypeAL: 'all',
-      aggregatedLayerText: 'W warstwie zbiorczej zajmujemy się '
+      aggregatedLayerText: 'W warstwie zbiorczej zajmujemy się przedstawieniem raportów dla całego portfela, a także poszczególnych produktów: css i ins.' +
+      ' Mając już obliczony vintage, jesteśmy w stanie przedstawić wykresy zarówno dla poszczególnych typów portfela, jak i dla vin 1, 2 i 3. '
     }
   },
   methods: {

@@ -9,13 +9,13 @@
       <h2 class="col-lg-8">{{this.msg}}</h2>
       <div>
         <button-group class="col-md-8">
-          <button class="btn btn-info btn-lg" v-on:click="visibleContainer = 1">Warstwa Całościowa</button>
-          <button class="btn btn-info btn-lg" v-on:click="visibleContainer = 2">Warstwa Zbiorcza</button>
+          <button class="btn btn-info btn-lg" v-on:click="visibleContainer = 1">Warstwa Zbiorcza</button>
+          <button class="btn btn-info btn-lg" v-on:click="visibleContainer = 2">Warstwa Identytfikacji Zmiennych</button>
           <button class="btn btn-info btn-lg" v-on:click="visibleContainer = 3">Warstwa Zmiennych</button>
         </button-group>
       </div>
-      <overall-layer v-if="visibleContainer === 1"></overall-layer>
-      <aggregate-layer v-if="visibleContainer === 2"></aggregate-layer>
+      <aggregate-layer v-if="visibleContainer === 1"></aggregate-layer>
+      <overall-layer v-if="visibleContainer === 2"></overall-layer>
       <variable-layer v-if="visibleContainer === 3"></variable-layer>
       <br>
     </div>
