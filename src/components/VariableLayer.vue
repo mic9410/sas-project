@@ -64,59 +64,79 @@
             </select>
           </div>
         </div>
-        {{this.fileName.toLowerCase()}}
       </form>
       <div class="row align-items-center justify-content-center">
-        <button v-on:click="displayResults" class="btn btn-lg btn-info showGraph">Pokaż wykres</button>
+        <button v-on:click="displayResults" class="btn btn-info showGraph">Pokaż wykres</button>
       </div>
-      <div class="form-group row" v-if="allValuesProvided">
-        <img src="D:\Repos\sas-raport\graphs1_all_act_act_age.jpg">
+      <div v-if="allValuesProvided">
+        Wartości dla klasy: {{ this.getCategories(this.variableName, 1).war }} <br>
+        <img
+          v-bind:src="this.getImgUrl(this.host, this.due, this.walletType, this.categoryType, this.getVariablePosition(this.categoryType, this.variableName), 1)"
+          alt=""/>
+        <br>
+        Wartości dla klasy: {{ this.getCategories(this.variableName, 2).war }} <br>
+        <img
+          v-bind:src="this.getImgUrl(this.host, this.due, this.walletType, this.categoryType, this.getVariablePosition(this.categoryType, this.variableName), 2)"
+          alt=""/>
+        <br>
+        Wartości dla klasy: {{ this.getCategories(this.variableName, 3).war }} <br>
+        <img
+          v-bind:src="this.getImgUrl(this.host, this.due, this.walletType, this.categoryType, this.getVariablePosition(this.categoryType, this.variableName), 3)"
+          alt=""/>
+
+        <!-- VarNumber: {{this.getVariablePosition(this.categoryType, this.variableName)}} <br>
+        {{this.getImgUrl(this.host, this.due, this.walletType, this.categoryType, this.getVariablePosition(this.categoryType, this.variableName))}}<br/>-->
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {categoriesArr} from './../../data/categoriesArr'
+
 export default {
   name: 'variable-layer',
   data () {
     return {
       bestVariables: {
         ACT: [
-          'act_age',
-          'act_cc',
-          'act_loaninc',
-          'act_call_cc',
-          'act_cins_n_loan'],
+          'ACT9_N_GOOD_DAYS',
+          'ACT6_N_GOOD_DAYS',
+          'ACT3_N_GOOD_DAYS',
+          'ACT_CALL_N_LOAN',
+          'ACT_CCSS_N_LOAN'],
         AGR: [
-          'agr3_Mean_CMaxA_Days',
-          'agr3_Mean_CMaxA_Due',
-          'agr6_Mean_CMaxI_Days',
-          'agr6_Max_CMaxI_Days',
-          'agr6_Max_CMaxC_Days'
+          'AGR3_MAX_CMAXI_DAYS',
+          'AGR9_MAX_CMAXC_DUE',
+          'AGR6_MAX_CMAXA_DUE',
+          'AGR6_MAX_CMAXC_DAYS',
+          'AGR6_MAX_CMAXA_DAYS'
         ],
         APP: [
-          'app1',
-          'app2',
-          'app3',
-          'app4',
-          'app5'
+          'APP_CHAR_JOB_CODE',
+          'APP_INSTALLMENT',
+          'APP_N_INSTALLMENTS',
+          'APP_LOAN_AMOUNT',
+          'APP_CHAR_BRANCH'
         ],
         AGS: [
-          'ags12_Max_CMaxC_Due',
-          'ags12_Mean_CMaxC_Due',
-          'ags9_Mean_CMaxA_Days',
-          'ags9_Mean_CMaxC_Days',
-          'ags6_Mean_CMaxA_Days'
+          'AGS6_MAX_CMAXC_DAYS',
+          'AGS3_MAX_CMAXA_DAYS',
+          'AGS12_MAX_CMAXA_DAYS',
+          'AGS9_MAX_CMAXA_DAYS',
+          'AGS6_MAX_CMAXA_DAYS'
         ]
       },
-      due: '',
-      walletType: '',
-      categoryType: '',
-      variableName: '',
+      host: 'https://s3.amazonaws.com/projektsas/projekt_all/',
+      due: '1',
+      walletType: 'all',
+      categoryType: 'ACT',
+      variableName: 'ACT_CALL_N_LOAN',
       fileName: '',
+      variableNumber: this.getVariablePosition(this.categoryType, this.variableName),
       variableLayerText: 'W warstwie zmiennych przyjrzmy się bliżej, jaki wpływ na ostateczny rezultat mają pojedyncze zmienne. ' +
-      'Z każdej kategorii wybieramy pięć najlepszych na podstawie wartości współczynnika Ginie\'go.'
+        'Z każdej kategorii wybieramy pięć najlepszych na podstawie wartości współczynnika Ginie\'go.'
     }
   },
   methods: {
@@ -136,6 +156,29 @@ export default {
           this.walletType !== '' &&
           this.categoryType !== '' &&
           this.variableName !== ''
+    },
+
+    getVariablePosition: function (category, varName) {
+      if (category === 'ACT') {
+        return this.bestVariables.ACT.indexOf(varName) + 1
+      }
+      if (category === 'AGR') {
+        return this.bestVariables.AGR.indexOf(varName) + 1
+      }
+      if (category === 'APP') {
+        return this.bestVariables.APP.indexOf(varName) + 1
+      }
+      if (category === 'AGS') {
+        return this.bestVariables.AGS.indexOf(varName) + 1
+      }
+    },
+
+    getImgUrl (host, due, wallet, category, variable, classification) {
+      return (host + due + '/' + wallet + '/' + category + '/' + variable + '/' + classification + '/Vin.png').toString()
+    },
+
+    getCategories (variableName = 'ACT9_N_GOOD_DAYS', group = 1) {
+      return categoriesArr.find(x => x.zmienna === variableName && x.grp === group)
     }
   }
 }
@@ -155,6 +198,14 @@ export default {
     word-wrap: break-word;
     font-size: larger;
     margin: 2%;
+  }
+
+  img {
+    height: 75%;
+    width: 75%;
+    margin: 3%;
+    display: inline-block;
+    text-align: center;
   }
 
   label {
