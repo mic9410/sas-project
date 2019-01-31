@@ -22,11 +22,11 @@
         </div>
       </form>
       <div class="results" v-if="allValuesProvidedAL">
-        <br>Vintage ilościowy - wykres asymptotyczny<br>
+        <h4>Vintage ilościowy - wykres asymptotyczny</h4><br>
         <img v-bind:src="this.getImgUrlForAL(this.hostAL, this.dueAL, 'vin_a' , this.walletTypeAL)" alt=""/>
-        <br>Vintage ilościowy<br>
+        <br><h4>Vintage ilościowy</h4><br>
         <img v-bind:src="this.getImgUrlForAL(this.hostAL, this.dueAL, 'vin_i' , this.walletTypeAL)" alt=""/>
-        <br>Vintage kwotowy<br>
+        <br><h4>Vintage kwotowy</h4><br>
         <img v-bind:src="this.getImgUrlForAL(this.hostAL, this.dueAL, 'vin_k' , this.walletTypeAL)" alt=""/>
       </div>
     </div>

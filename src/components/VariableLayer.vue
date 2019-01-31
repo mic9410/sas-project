@@ -31,7 +31,7 @@
               <i class="fas fa-info-circle"></i>
             </a>
           </label>
-          <select class="form-control col-md-2 btn btn-secondary" id="variable-category-type" v-model="categoryType">
+          <select class="form-control col-md-2 btn btn-secondary" id="variable-category-type" v-model="grupa">
             <option selected>ACT</option>
             <option>AGR</option>
             <option>APP</option>
@@ -44,49 +44,51 @@
           <div id="variableName" class="">
             <select class="form-control btn btn-secondary"
                     v-model="variableName"
-                    v-if="categoryType === 'ACT'">
+                    v-if="grupa === 'ACT'">
               <option v-for="variable in bestVariables.ACT">{{variable}}</option>
             </select>
             <select class="form-control  btn btn-secondary"
                     v-model="variableName"
-                    v-if="categoryType === 'AGR'">
+                    v-if="grupa === 'AGR'">
               <option v-for="variable in bestVariables.AGR">{{variable}}</option>
             </select>
             <select class="form-control btn btn-secondary"
                     v-model="variableName"
-                    v-if="categoryType === 'APP'">
+                    v-if="grupa === 'APP'">
               <option v-for="variable in bestVariables.APP">{{variable}}</option>
             </select>
             <select class="form-control btn btn-secondary"
                     v-model="variableName"
-                    v-if="categoryType === 'AGS'">
+                    v-if="grupa === 'AGS'">
               <option v-for="variable in bestVariables.AGS">{{variable}}</option>
             </select>
           </div>
         </div>
+
+        <div class="results" v-if="allValuesProvided">
+          <h4>Wartości dla klasy: {{ this.getCategories(this.due, this.walletType, this.grupa, this.variableName, 1).war }}</h4><br>
+          <img
+            v-bind:src="this.getImgUrl(this.host, this.due, this.walletType, this.grupa, this.getGinni(this.due, this.walletType, this.grupa, this.variableName), 1)"
+            alt=""/>
+          <br>
+          <h4>Wartości dla klasy: {{ this.getCategories(this.due, this.walletType, this.grupa, this.variableName, 2).war  }}</h4><br>
+          <img
+            v-bind:src="this.getImgUrl(this.host, this.due, this.walletType, this.grupa, this.getGinni(this.due, this.walletType, this.grupa, this.variableName), 2)"
+            alt=""/>
+          <br>
+          <h4>Wartości dla klasy: {{ this.getCategories(this.due, this.walletType, this.grupa, this.variableName, 3).war }}</h4>
+          <img
+            v-bind:src="this.getImgUrl(this.host, this.due, this.walletType, this.grupa, this.getGinni(this.due, this.walletType, this.grupa, this.variableName), 3)"
+            alt=""/>
+        </div>
       </form>
-      <div class="results" v-if="allValuesProvided">
-        Wartości dla klasy: {{ this.getCategories(this.variableName, 1).war }} <br>
-        <img
-          v-bind:src="this.getImgUrl(this.host, this.due, this.walletType, this.categoryType, this.getVariablePosition(this.categoryType, this.variableName), 1)"
-          alt=""/>
-        <br>
-        Wartości dla klasy: {{ this.getCategories(this.variableName, 2).war }} <br>
-        <img
-          v-bind:src="this.getImgUrl(this.host, this.due, this.walletType, this.categoryType, this.getVariablePosition(this.categoryType, this.variableName), 2)"
-          alt=""/>
-        <br>
-        Wartości dla klasy: {{ this.getCategories(this.variableName, 3).war }} <br>
-        <img
-          v-bind:src="this.getImgUrl(this.host, this.due, this.walletType, this.categoryType, this.getVariablePosition(this.categoryType, this.variableName), 3)"
-          alt=""/>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
 import {categoriesArr} from './../../data/categoriesArr'
+import {variablesArr} from './../../data/variablesArr'
 
 export default {
   name: 'variable-layer',
@@ -94,17 +96,18 @@ export default {
     return {
       bestVariables: {
         ACT: [
-          'ACT9_N_GOOD_DAYS',
-          'ACT6_N_GOOD_DAYS',
-          'ACT3_N_GOOD_DAYS',
+          'ACT_CCSS_N_LOAN',
           'ACT_CALL_N_LOAN',
-          'ACT_CCSS_N_LOAN'],
+          'ACT3_N_GOOD_DAYS',
+          'ACT6_N_GOOD_DAYS',
+          'ACT9_N_GOOD_DAYS'
+        ],
         AGR: [
-          'AGR3_MAX_CMAXI_DAYS',
-          'AGR9_MAX_CMAXC_DUE',
-          'AGR6_MAX_CMAXA_DUE',
+          'AGR6_MAX_CMAXA_DAYS',
           'AGR6_MAX_CMAXC_DAYS',
-          'AGR6_MAX_CMAXA_DAYS'
+          'AGR6_MAX_CMAXA_DUE',
+          'AGR9_MAX_CMAXC_DUE',
+          'AGR3_MAX_CMAXI_DAYS'
         ],
         APP: [
           'APP_CHAR_JOB_CODE',
@@ -122,11 +125,11 @@ export default {
         ]
       },
       host: 'https://s3.amazonaws.com/projektsas/projekt_all/',
-      due: '1',
+      due: 1,
       walletType: 'all',
-      categoryType: 'ACT',
-      variableName: 'ACT_CALL_N_LOAN',
-      variableNumber: this.getVariablePosition(this.categoryType, this.variableName),
+      grupa: 'ACT',
+      variableName: 'ACT6_N_GOOD_DAYS',
+      variableNumber: this.getVariablePosition(this.grupa, this.variableName),
       variableLayerText: 'W warstwie zmiennych przyjrzmy się bliżej, jaki wpływ na ostateczny rezultat mają pojedyncze zmienne. ' +
         'Z każdej kategorii wybieramy pięć najlepszych na podstawie wartości współczynnika Ginie\'go.'
     }
@@ -135,7 +138,7 @@ export default {
     allValuesProvided: function () {
       return this.due !== '' &&
           this.walletType !== '' &&
-          this.categoryType !== '' &&
+          this.grupa !== '' &&
           this.variableName !== ''
     },
 
@@ -158,8 +161,20 @@ export default {
       return (host + due + '/' + wallet + '/' + category + '/' + variable + '/' + classification + '/Vin.png').toString()
     },
 
-    getCategories (variableName = 'ACT9_N_GOOD_DAYS', group = 1) {
-      return categoriesArr.find(x => x.zmienna === variableName && x.grp === group)
+    getCategories (due1, walletType1, grupa1, zmienna1, klasa1) {
+      if (categoriesArr.find(x => x.due === due1 && x.walletType === walletType1 && x.grupa === grupa1 && x.zmienna === zmienna1 && x.klasa === klasa1) === undefined) {
+        return 'und'
+      } else {
+        return categoriesArr.find(x => x.due === due1 && x.walletType === walletType1 && x.grupa === grupa1 && x.zmienna === zmienna1 && x.klasa === klasa1)
+      }
+    },
+
+    getGinni (due1, product1, grupa1, zmienna1) {
+      if (variablesArr.find(x => x.dueOrVin === due1 && x.prod === product1 && x.grupa === grupa1 && x.zmienna === zmienna1) === undefined) {
+        return ''
+      } else {
+        return variablesArr.find(x => x.dueOrVin === due1 && x.prod === product1 && x.grupa === grupa1 && x.zmienna === zmienna1).kolejnosc_wg_gini
+      }
     }
   }
 }
