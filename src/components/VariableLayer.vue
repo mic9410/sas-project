@@ -65,10 +65,7 @@
           </div>
         </div>
       </form>
-      <div class="row align-items-center justify-content-center">
-        <button v-on:click="displayResults" class="btn btn-info showGraph">Pokaż wykres</button>
-      </div>
-      <div v-if="allValuesProvided">
+      <div class="results" v-if="allValuesProvided">
         Wartości dla klasy: {{ this.getCategories(this.variableName, 1).war }} <br>
         <img
           v-bind:src="this.getImgUrl(this.host, this.due, this.walletType, this.categoryType, this.getVariablePosition(this.categoryType, this.variableName), 1)"
@@ -83,10 +80,6 @@
         <img
           v-bind:src="this.getImgUrl(this.host, this.due, this.walletType, this.categoryType, this.getVariablePosition(this.categoryType, this.variableName), 3)"
           alt=""/>
-
-        <!-- VarNumber: {{this.getVariablePosition(this.categoryType, this.variableName)}} <br>
-        {{this.getImgUrl(this.host, this.due, this.walletType, this.categoryType, this.getVariablePosition(this.categoryType, this.variableName))}}<br/>-->
-
       </div>
     </div>
   </div>
@@ -133,24 +126,12 @@ export default {
       walletType: 'all',
       categoryType: 'ACT',
       variableName: 'ACT_CALL_N_LOAN',
-      fileName: '',
       variableNumber: this.getVariablePosition(this.categoryType, this.variableName),
       variableLayerText: 'W warstwie zmiennych przyjrzmy się bliżej, jaki wpływ na ostateczny rezultat mają pojedyncze zmienne. ' +
         'Z każdej kategorii wybieramy pięć najlepszych na podstawie wartości współczynnika Ginie\'go.'
     }
   },
   methods: {
-    displayResults: function (event) {
-      // `this` inside methods points to the Vue instance
-      // `event` is the native DOM event
-      if (event && this.allValuesProvided()) {
-        this.fileName = 'D:\\Repos\\sas-raport\\graphs' + this.due + '_' + this.walletType + '_' + this.categoryType + '_' + this.variableName + '.jpg'
-      } else {
-        alert('Nie można wygenerować wykresu.\n' +
-            'Upewnij sie, że uzupełniłeś wszystkie pola.')
-      }
-    },
-
     allValuesProvided: function () {
       return this.due !== '' &&
           this.walletType !== '' &&
@@ -206,6 +187,10 @@ export default {
     margin: 3%;
     display: inline-block;
     text-align: center;
+  }
+
+  .results {
+    margin-top: 10%;
   }
 
   label {
