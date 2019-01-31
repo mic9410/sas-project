@@ -243,24 +243,60 @@
                     v-if="due === '3' && walletType === 'ins' && grupa === 'AGS'">
               <option selected v-for="variable in ['AGS9_MEAN_CMAXI_DAYS', 'AGS6_MIN_CMAXI_DAYS', 'AGS6_MAX_CMAXI_DAYS', 'AGS12_MEAN_CMAXI_DAYS', 'AGS6_MEAN_CMAXI_DAYS']">{{variable}}</option>
             </select>
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '3' && walletType === 'all' && grupa === 'APP'">
+              <option selected v-for="variable in ['APP_CHAR_BRANCH', 'APP_LOAN_AMOUNT', 'APP_INSTALLMENT', 'APP_N_INSTALLMENTS', 'APP_CHAR_CARS']">{{variable}}
+              </option>
+            </select>
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '3' && walletType === 'css' && grupa === 'APP'">
+              <option selected v-for="variable in ['APP_CHAR_GENDER', 'APP_CHAR_CITY', 'APP_CHAR_HOME_STATUS', 'APP_CHAR_CARS', 'APP_NUMBER_OF_CHILDREN']">{{variable}}</option>
+            </select>
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '3' && walletType === 'ins' && grupa === 'APP'">
+              <option selected v-for="variable in ['APP_LOAN_AMOUNT', 'APP_INSTALLMENT', 'APP_N_INSTALLMENTS', 'APP_CHAR_MARITAL_STATUS', 'APP_CHAR_CARS']">{{variable}}</option>
+            </select>
           </div>
         </div>
 
         <div class="results" v-if="allValuesProvided">
-          <h4>Wartości dla klasy: {{ this.getCategories(this.due, this.walletType, this.grupa, this.variableName, 1).war
-            }}</h4><br>
+          <h4>Wartości dla klasy: {{ this.getCategories(this.due, this.walletType, this.grupa, this.variableName, 1).war}}</h4><br>
+          <h4>il_jed_at: {{ this.getStatistics(this.variableName, 1).il_jed_at }}</h4>
+          <h4>il_at: {{ this.getStatistics(this.variableName, 1).il_at }}</h4>
+          <h4>il_zer_at: {{ this.getStatistics(this.variableName, 1).il_zer_at }}</h4>
+          <h4>procent_jedynek: {{ this.getStatistics(this.variableName, 1).procent_jedynek }}</h4>
+            <h4>wartosc_gini: {{ this.getStatistics(this.variableName, 1).wartosc_gini }}</h4>
+            <h4>kolejność wg. rankignu Giniego: {{ this.getStatistics(this.variableName, 1).kolejnosc_wg_gini }}</h4>
+          <br>
           <img
             v-bind:src="this.getImgUrl(this.host, this.due, this.walletType, this.grupa, this.getGinni(this.due, this.walletType, this.grupa, this.variableName), 1)"
             alt=""/>
           <br>
           <h4>Wartości dla klasy: {{ this.getCategories(this.due, this.walletType, this.grupa, this.variableName, 2).war
             }}</h4><br>
+          <h4>il_jed_at: {{ this.getStatistics(this.variableName, 2).il_jed_at }}</h4><br>
+          <h4>il_at: {{ this.getStatistics(this.variableName, 2).il_at }}</h4><br>
+          <h4>il_zer_at: {{ this.getStatistics(this.variableName, 2).il_zer_at }}</h4><br>
+          <h4>procent_jedynek: {{ this.getStatistics(this.variableName, 2).procent_jedynek }}</h4><br>
+          <h4>wartosc_gini: {{ this.getStatistics(this.variableName, 2).wartosc_gini }}</h4><br>
+          <h4>kolejność wg. rankignu Giniego: {{ this.getStatistics(this.variableName, 2).kolejnosc_wg_gini }}</h4>
+          <br>
           <img
             v-bind:src="this.getImgUrl(this.host, this.due, this.walletType, this.grupa, this.getGinni(this.due, this.walletType, this.grupa, this.variableName), 2)"
             alt=""/>
           <br>
           <h4>Wartości dla klasy: {{ this.getCategories(this.due, this.walletType, this.grupa, this.variableName, 3).war
-            }}</h4>
+            }}</h4><br>
+          <h4>il_jed_at: {{ this.getStatistics(this.variableName, 3).il_jed_at }}</h4><br>
+          <h4>il_at: {{ this.getStatistics(this.variableName, 3).il_at }}</h4><br>
+          <h4>il_zer_at: {{ this.getStatistics(this.variableName, 3).il_zer_at }} </h4><br>
+          <h4>procent_jedynek: {{ this.getStatistics(this.variableName, 3).procent_jedynek }}</h4><br>
+          <h4>wartosc_gini: {{ this.getStatistics(this.variableName, 3).wartosc_gini }}</h4><br>
+          <h4>kolejność wg. rankignu Giniego: {{ this.getStatistics(this.variableName, 3).kolejnosc_wg_gini }}</h4>
+          <br>
           <img
             v-bind:src="this.getImgUrl(this.host, this.due, this.walletType, this.grupa, this.getGinni(this.due, this.walletType, this.grupa, this.variableName), 3)"
             alt=""/>
@@ -273,6 +309,7 @@
 <script>
 import {categoriesArr} from './../../data/categoriesArr'
 import {variablesArr} from './../../data/variablesArr'
+import {categorizingVarablesArr} from './../../data/categorizingVaraiblesArr'
 
 export default {
   name: 'variable-layer',
@@ -339,10 +376,10 @@ export default {
       }
     },
 
-    getACT (due, prod) {
-      console.log('PROD: ' + prod)
-      return variablesArr.find(x => x.dueOrVin === due && x.prod === prod && x.grupa === 'ACT' && x.kolejnosc_wg_gini === 1).zmienna.toString()
+    getStatistics (varName, group) {
+      return categorizingVarablesArr.find(x => x.zmienna === varName && x.grp === group)
     },
+
     getImgUrl (host, due, wallet, category, variable, classification) {
       return (host + due + '/' + wallet + '/' + category + '/' + variable + '/' + classification + '/Vin.png').toString()
     },
