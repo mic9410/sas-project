@@ -46,7 +46,7 @@
                     v-model="variableName"
                     v-if="due === '1' && walletType === 'all' && grupa === 'ACT'">
               <option selected
-                v-for="variable in ['ACT_CCSS_N_LOAN','ACT_CALL_N_LOAN','ACT3_N_GOOD_DAYS','ACT6_N_GOOD_DAYS', 'ACT9_N_GOOD_DAYS',]">
+                v-for="variable in ['ACT_CCSS_N_LOAN','ACT_CALL_N_LOAN','ACT3_N_GOOD_DAYS','ACT6_N_GOOD_DAYS', 'ACT9_N_GOOD_DAYS']">
                 {{variable}}
               </option>
             </select>
@@ -146,6 +146,102 @@
                     v-model="variableName"
                     v-if="due === '2' && walletType === 'ins' && grupa === 'ACT'">
               <option  v-for="variable in ['ACT_CALL_CC', 'ACT_LOANINC', 'ACT_CC', 'ACT_CINS_N_STATB', 'ACT_CINS_ALL']">{{variable}}</option>
+            </select>
+
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '2' && walletType === 'all' && grupa === 'AGR'">
+              <option v-for="variable in ['AGR3_MEAN_CMAXI_DAYS', 'AGR3_MAX_CMAXI_DAYS', 'AGR12_MAX_CMAXA_DUE', 'AGR9_MAX_CMAXA_DUE', 'AGR6_MAX_CMAXA_DUE']">{{variable}}</option>
+            </select>
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '2' && walletType === 'css' && grupa === 'AGR'">
+              <option v-for="variable in ['AGR12_MEAN_CMAXC_DUE', 'AGR12_MAX_CMAXC_DUE', 'AGR9_MAX_CMAXC_DUE', 'AGR12_MAX_CMAXC_DAYS', 'AGR6_MAX_CMAXC_DUE']">{{variable}}</option>
+            </select>
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '2' && walletType === 'ins' && grupa === 'AGR'">
+              <option v-for="variable in ['AGR3_MAX_CMAXI_DAYS', 'AGR6_MIN_CMAXI_DAYS', 'AGR6_MAX_CMAXI_DAYS', 'AGR9_MIN_CMAXI_DAYS', 'AGR12_MIN_CMAXI_DAYS']">{{variable}}</option>
+            </select>
+
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '2' && walletType === 'all' && grupa === 'AGS'">
+              <option v-for="variable in ['AGS9_MAX_CMAXA_DAYS', 'AGS12_MAX_CMAXA_DAYS', 'AGS12_MEAN_CMAXI_DAYS', 'AGS12_MAX_CMAXI_DAYS', 'AGS9_MAX_CMAXI_DAYS'] ">{{variable}}</option>
+            </select>
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '2' && walletType === 'css' && grupa === 'AGS'">
+              <option v-for="variable in ['AGS12_MEAN_CMAXC_DUE', 'AGS12_MAX_CMAXC_DUE', 'AGS6_MAX_CMAXC_DUE', 'AGS9_MAX_CMAXC_DUE','AGS9_MEAN_CMAXC_DUE']">{{variable}}</option>
+            </select>
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '2' && walletType === 'ins' && grupa === 'AGS'">
+              <option v-for="variable in ['AGS9_MEAN_CMAXI_DAYS', 'AGS3_MAX_CMAXI_DAYS', 'AGS6_MAX_CMAXI_DAYS', 'AGS9_MAX_CMAXI_DAYS', 'AGS3_MEAN_CMAXI_DAYS']">{{variable}}</option>
+            </select>
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '2' && walletType === 'all' && grupa === 'APP'">
+              <option v-for="variable in ['APP_CHAR_BRANCH', 'APP_LOAN_AMOUNT', 'APP_INSTALLMENT', 'APP_N_INSTALLMENTS', 'APP_CHAR_CARS'] ">{{variable}}</option>
+            </select>
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '2' && walletType === 'css' && grupa === 'APP'">
+              <option v-for="variable in ['APP_CHAR_GENDER', 'APP_CHAR_CITY', 'APP_CHAR_CARS', 'APP_CHAR_HOME_STATUS', 'APP_SPENDINGS']">{{variable}}</option>
+            </select>
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '2' && walletType === 'ins' && grupa === 'APP'">
+              <option v-for="variable in ['APP_LOAN_AMOUNT', 'APP_INSTALLMENT', 'APP_N_INSTALLMENTS', 'APP_CHAR_CARS', 'APP_CHAR_GENDER']">{{variable}}</option>
+            </select>
+
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '3' && walletType === 'all' && grupa === 'ACT'">
+              <option selected v-for="variable in ['ACT3_N_GOOD_DAYS', 'ACT6_N_GOOD_DAYS', 'ACT_CCSS_N_LOAN', 'ACT_CALL_N_LOAN', 'ACT9_N_GOOD_DAYS'] ">{{variable}}
+              </option>
+            </select>
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '3' && walletType === 'css' && grupa === 'ACT'">
+              <option selected v-for="variable in ['ACT_CCSS_MIN_SENIORITY', 'ACT_CCSS_N_STATB', 'ACT_CCSS_DUEUTL', 'ACT_CCSS_MAXDUE', 'ACT_CMAXC_DUE']">{{variable}}</option>
+            </select>
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '3' && walletType === 'ins' && grupa === 'ACT'">
+              <option selected v-for="variable in ['ACT_CALL_CC', 'ACT_CC', 'ACT_LOANINC', 'ACT_CINS_N_STATB', 'ACT_CINS_ACP']">{{variable}}</option>
+            </select>
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '3' && walletType === 'all' && grupa === 'AGR'">
+              <option selected v-for="variable in ['AGR3_MIN_CMAXI_DAYS', 'AGR3_MAX_CMAXI_DAYS', 'AGR6_MAX_CMAXA_DUE', 'AGR6_MIN_CMAXI_DAYS', 'AGR3_MEAN_CMAXI_DAYS']">{{variable}}
+              </option>
+            </select>
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '3' && walletType === 'css' && grupa === 'AGR'">
+              <option selected v-for="variable in ['AGR6_MEAN_CMAXC_DUE', 'AGR12_MEAN_CMAXC_DUE', 'AGR12_MAX_CMAXC_DUE', 'AGR12_MAX_CMAXC_DAYS', 'AGR9_MAX_CMAXC_DUE']">{{variable}}</option>
+            </select>
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '3' && walletType === 'ins' && grupa === 'AGR'">
+              <option selected v-for="variable in ['AGR3_MIN_CMAXI_DAYS', 'AGR6_MIN_CMAXI_DAYS', 'AGR3_MEAN_CMAXI_DAYS', 'AGR6_MAX_CMAXI_DAYS', 'AGR9_MIN_CMAXI_DAYS']">{{variable}}</option>
+            </select>
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '3' && walletType === 'all' && grupa === 'AGS'">
+              <option selected v-for="variable in ['AGS9_MAX_CMAXA_DAYS', 'AGS12_MAX_CMAXA_DAYS', 'AGS12_MIN_CMAXI_DAYS', 'AGS12_MAX_CMAXI_DAYS', 'AGS9_MIN_CMAXI_DAYS']">{{variable}}
+              </option>
+            </select>
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '3' && walletType === 'css' && grupa === 'AGS'">
+              <option selected v-for="variable in ['AGS6_MEAN_CMAXC_DUE', 'AGS12_MEAN_CMAXC_DUE', 'AGS6_MAX_CMAXC_DUE', 'AGS9_MAX_CMAXC_DUE', 'AGS12_MAX_CMAXC_DUE']">{{variable}}</option>
+            </select>
+            <select class="form-control btn btn-secondary"
+                    v-model="variableName"
+                    v-if="due === '3' && walletType === 'ins' && grupa === 'AGS'">
+              <option selected v-for="variable in ['AGS9_MEAN_CMAXI_DAYS', 'AGS6_MIN_CMAXI_DAYS', 'AGS6_MAX_CMAXI_DAYS', 'AGS12_MEAN_CMAXI_DAYS', 'AGS6_MEAN_CMAXI_DAYS']">{{variable}}</option>
             </select>
           </div>
         </div>
