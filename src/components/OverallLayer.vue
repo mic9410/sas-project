@@ -31,7 +31,6 @@ export default {
       vinIlosciowyAsPath: 'D:\\Repos\\sas-raport\\data\\vin_ilosciowy_as.PNG',
       vinKwotowyPath: 'D:\\Repos\\sas-raport\\data\\vin_kwotowy.PNG',
       vinKwotowyAsPath: 'D:\\Repos\\sas-raport\\data\\vin_kwotowy_as.PNG',
-      text1: 'dupa1'
     }
   },
   methods: {
