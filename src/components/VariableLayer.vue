@@ -23,9 +23,9 @@
         </div>
         <div class="form-group row">
           <label for="variable-category-type" class="col-md-6 col-form-label">Kategoria zmiennej
-            <a v-b-tooltip.hover="'ACT - w momencie pomiaru\n' +
+            <a v-b-tooltip.hover="'ACT - kategorie opisujące klienta w momencie pomiaru\n' +
             'AGR - kategorie zmiennych behawioralnych, gdzie missing w danych powoduje missing agregatu\n'+
-            'APP - opisują klienta w momencie aplikacji\n'+
+            'APP - kategorie opisujące klienta w momencie aplikacji\n'+
             'AGS - kategorie zmiennych behawioralnych'"
                variant="outline-success">
               <i class="fas fa-info-circle"></i>
