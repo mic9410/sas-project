@@ -259,14 +259,13 @@
             </select>
           </div>
         </div>
-
         <div class="results" v-if="allValuesProvided">
           <h4>Wartości dla klasy: {{ this.getCategories(this.due, this.walletType, this.grupa, this.variableName, 1).war}}</h4><br>
-          <h4>il_jed_at: {{ this.getStatistics(this.variableName, 1).il_jed_at }}</h4>
-          <h4>il_at: {{ this.getStatistics(this.variableName, 1).il_at }}</h4>
-          <h4>il_zer_at: {{ this.getStatistics(this.variableName, 1).il_zer_at }}</h4>
-          <h4>procent_jedynek: {{ this.getStatistics(this.variableName, 1).procent_jedynek }}</h4>
-            <h4>wartosc_gini: {{ this.getStatistics(this.variableName, 1).wartosc_gini }}</h4>
+          <h4>Ilość jednykowych atrybutów: {{ this.getStatistics(this.variableName, 1).il_jed_at }}</h4>
+          <h4>Ilość atrybutów: {{ this.getStatistics(this.variableName, 1).il_at }}</h4>
+          <h4>Ilość zerowych atrybutów: {{ this.getStatistics(this.variableName, 1).il_zer_at }}</h4>
+          <h4>Procent jedynek: {{ this.getStatistics(this.variableName, 1).procent_jedynek }}</h4>
+            <h4>Wartość Gini'ego: {{ this.getStatistics(this.variableName, 1).wartosc_gini }}</h4>
             <h4>kolejność wg. rankignu Giniego: {{ this.getStatistics(this.variableName, 1).kolejnosc_wg_gini }}</h4>
           <br>
           <img
@@ -275,11 +274,11 @@
           <br>
           <h4>Wartości dla klasy: {{ this.getCategories(this.due, this.walletType, this.grupa, this.variableName, 2).war
             }}</h4><br>
-          <h4>il_jed_at: {{ this.getStatistics(this.variableName, 2).il_jed_at }}</h4><br>
-          <h4>il_at: {{ this.getStatistics(this.variableName, 2).il_at }}</h4><br>
-          <h4>il_zer_at: {{ this.getStatistics(this.variableName, 2).il_zer_at }}</h4><br>
-          <h4>procent_jedynek: {{ this.getStatistics(this.variableName, 2).procent_jedynek }}</h4><br>
-          <h4>wartosc_gini: {{ this.getStatistics(this.variableName, 2).wartosc_gini }}</h4><br>
+          <h4>Ilość jednykowych atrybutów: {{ this.getStatistics(this.variableName, 2).il_jed_at }}</h4><br>
+          <h4>Ilość atrybutów: {{ this.getStatistics(this.variableName, 2).il_at }}</h4>
+          <h4>Ilość zerowych atrybutów: {{ this.getStatistics(this.variableName, 2).il_zer_at }}</h4>
+          <h4>Procent jedynek: {{ this.getStatistics(this.variableName, 2).procent_jedynek }}</h4>
+          <h4>Wartość Gini'ego: {{ this.getStatistics(this.variableName, 2).wartosc_gini }}</h4>
           <h4>kolejność wg. rankignu Giniego: {{ this.getStatistics(this.variableName, 2).kolejnosc_wg_gini }}</h4>
           <br>
           <img
@@ -288,11 +287,11 @@
           <br>
           <h4>Wartości dla klasy: {{ this.getCategories(this.due, this.walletType, this.grupa, this.variableName, 3).war
             }}</h4><br>
-          <h4>il_jed_at: {{ this.getStatistics(this.variableName, 3).il_jed_at }}</h4><br>
-          <h4>il_at: {{ this.getStatistics(this.variableName, 3).il_at }}</h4><br>
-          <h4>il_zer_at: {{ this.getStatistics(this.variableName, 3).il_zer_at }} </h4><br>
-          <h4>procent_jedynek: {{ this.getStatistics(this.variableName, 3).procent_jedynek }}</h4><br>
-          <h4>wartosc_gini: {{ this.getStatistics(this.variableName, 3).wartosc_gini }}</h4><br>
+          <h4>Ilość jednykowych atrybutów: {{ this.getStatistics(this.variableName, 3).il_jed_at }}</h4><br>
+          <h4>Ilość atrybutów: {{ this.getStatistics(this.variableName, 3).il_at }}</h4>
+          <h4>Ilość zerowych atrybutów: {{ this.getStatistics(this.variableName, 3).il_zer_at }} </h4>
+          <h4>Procent jedynek: {{ this.getStatistics(this.variableName, 3).procent_jedynek }}</h4>
+          <h4>Wartość Gini'ego: {{ this.getStatistics(this.variableName, 3).wartosc_gini }}</h4>
           <h4>kolejność wg. rankignu Giniego: {{ this.getStatistics(this.variableName, 3).kolejnosc_wg_gini }}</h4>
           <br>
           <img
