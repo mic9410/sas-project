@@ -4,7 +4,7 @@
     <div class="container select-params col-md-8 align-content-center">
       <form>
         <div class="form-group row">
-          <label for="dueAL" class="col-md-6 col-form-label">Określ due (minimalna liczba opóźnionych rat) </label>
+          <label for="dueAL" class="col-md-6 col-form-label">Określ vin (minimalna liczba opóźnionych rat) </label>
           <select class="form-control col-md-2 btn btn-secondary " id="dueAL" v-model="dueAL">
             <option selected>1</option>
             <option>2</option>

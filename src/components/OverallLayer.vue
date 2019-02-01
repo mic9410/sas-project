@@ -4,7 +4,7 @@
     <div class="container select-params col-md-8 align-content-center">
       <form>
         <div class="form-group row">
-          <label for="dueOL" class="col-md-6 col-form-label">Określ due (minimalna liczba opóźnionych rat) </label>
+          <label for="dueOL" class="col-md-6 col-form-label">Określ vin (minimalna liczba opóźnionych rat) </label>
           <select class="form-control col-md-2 btn btn-secondary " id="dueOL" v-model="dueOL">
             <option selected>1</option>
             <option>2</option>
@@ -356,8 +356,8 @@ export default {
       hostOL: 'https://s3.amazonaws.com/projektsas/projekt_all/',
       dueOL: '1',
       walletTypeOL: 'all',
-      aggregatedLayerText: 'W warstwie zbiorczej zajmujemy się przedstawieniem raportów dla całego portfela, a także poszczególnych produktów: css i ins.' +
-        ' Mając już obliczony vintage, jesteśmy w stanie przedstawić wykresy zarówno dla poszczególnych typów portfela, jak i dla vin 1, 2 i 3. '
+      aggregatedLayerText: 'W warstwie identyfikacji zmiennych przedstawimy po 5 zmiennych o najwyższym współczynniku Giniego, zaczynając od najistotniejszych. ' +
+        'Zawartość tabeli jak i kolejność jest różna ,w zależności od zdefiniowanego Vin oraz typu portfela.'
     }
   },
   methods: {
